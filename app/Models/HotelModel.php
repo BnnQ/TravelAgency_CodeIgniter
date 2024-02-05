@@ -19,7 +19,7 @@ class HotelModel extends Model
         $query = $builder
             ->select('Hotels.Id, Hotels.Name, Hotels.Stars, Hotels.Cost, Hotels.Info, Images.ImagePath, Countries.Name as CountryName, Cities.Name as CityName')
             ->join('Countries', 'Hotels.CountryId = Countries.Id')
-            ->join('Cities', 'Countries.Id = Cities.CountryId')
+            ->join('Cities', 'Hotels.CityId = Cities.Id') // Adjusted join condition
             ->join('Images', 'Images.HotelId = Hotels.Id');
 
         if ($limit > 0)
@@ -43,7 +43,7 @@ class HotelModel extends Model
         $query = $builder
             ->select('Hotels.Id, Hotels.Name, Hotels.Stars, Hotels.Cost, Hotels.Info, Images.ImagePath, Countries.Name as CountryName, Cities.Name as CityName')
             ->join('Countries', 'Hotels.CountryId = Countries.Id')
-            ->join('Cities', 'Countries.Id = Cities.CountryId')
+            ->join('Cities', 'Hotels.CityId = Cities.Id') // Adjusted join condition
             ->join('Images', 'Images.HotelId = Hotels.Id')
             ->where('Hotels.Name', $name);
 
